@@ -19,25 +19,13 @@ def pass_gen():
     nr_symbols = random.randint(2, 4)
     nr_numbers = random.randint(2, 4)
 
-    # for char in range(nr_letters):
-    #     password_list.append(random.choice(letters))
     password_list = [random.choice(letters) for char in range(nr_letters)]
-
-    # for char in range(nr_symbols):
-    #     password_list += random.choice(symbols)
     password_list += [random.choice(symbols) for char in range(nr_symbols)]
-
-    # for char in range(nr_numbers):
-    #     password_list += random.choice(numbers)
     password_list += [random.choice(numbers) for char in range(nr_numbers)]
 
     random.shuffle(password_list)
-    # password = ""
-    # for char in password_list:
-    #     password += char
     password = "".join(password_list)
 
-    # print(f"Your password is: {password}")
     pass_entry.insert(0, password)
 
     # save the string into the clipboard
@@ -55,22 +43,15 @@ def save():
             "password": pass_val,
         }
     }
-
     # show warning that a field is left empty!
     if website_val == "" or pass_val == "":
         messagebox.showinfo(title="Oops", message="Please don't leave any fields empty!")
     else:
-        # standard dialogs
-        # messagebox.showinfo(title="Tile", message="message")
-        # is_ok = messagebox.askokcancel(title=website_val, message=f"These are the details entered: \nEmail: {email_val}\n"
-        #                                                           f"Password: {pass_val}\nIs it ok to save? ")
-        # if is_ok:
         try:
             with open("data.json", "r") as f:
                 # Update data to JSON
                 # 1. Read the old data
                 data = json.load(f)
-
         except FileNotFoundError:
             with open("data.json", "w") as f:
                 json.dump(new_data, f, indent=4)
@@ -106,8 +87,6 @@ def find_password():
                                 message=f"Here are your details:\n"
                                         f"{keys_list[0].title()}: {extract_data_from_json['email']}\n"
                                         f"{keys_list[1].title()}: {extract_data_from_json['password']}")
-
-
 # ---------------------------- UI SETUP ------------------------------- #
 
 
